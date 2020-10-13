@@ -38,4 +38,5 @@ import {
   ],
   providers: [ItemPersistenceService],
 })
+
 export class ItemsModule {}
