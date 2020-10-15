@@ -9,6 +9,8 @@ import { TableListComponent } from '../../table-list/table-list.component';
 
 import { AppStoreModule } from '../../store';
 
+import { ItemsModule } from '../../items';
+
 import { TypographyComponent } from '../../typography/typography.component';
 import { IconsComponent } from '../../icons/icons.component';
 import { MapsComponent } from '../../maps/maps.component';
@@ -34,6 +36,7 @@ import {MatSelectModule} from '@angular/material/select';
     MatSelectModule,
     MatTooltipModule,
     AppStoreModule,
+    ItemsModule
   ],
   declarations: [
     DashboardComponent,
