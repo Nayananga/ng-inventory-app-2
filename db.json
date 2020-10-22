@@ -1,20 +1,6 @@
 {
   "items": [
     {
-      "id": 1,
-      "name": "schoolgirl",
-      "description": "this is a sample description",
-      "quantity": 8,
-      "minimumQuantity": 0
-    },
-    {
-      "id": 2,
-      "name": "deontic",
-      "description": "this is a sample description",
-      "quantity": 1,
-      "minimumQuantity": 0
-    },
-    {
       "id": 3,
       "name": "solarised",
       "description": "this is a sample description",
