@@ -3,11 +3,11 @@ import { CommonModule, } from '@angular/common';
 import { BrowserModule  } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { AdminLayoutComponent } from '../layouts/admin-layout/admin-layout.component';
 
 const routes: Routes =[
   { path: '', redirectTo: 'dashboard', pathMatch: 'full',}, 
-  { path: '', component: AdminLayoutComponent, loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'}
+  { path: '', component: AdminLayoutComponent, loadChildren: '../layouts/admin-layout/admin-layout.module#AdminLayoutModule'}
 ];
 
 @NgModule({
@@ -19,4 +19,4 @@ const routes: Routes =[
   exports: [],
 })
 
-export class AppRoutingModule { }
+export class HomeRoutingModule { }
