@@ -1,5 +1,12 @@
 <header class="flex">
   <div class="w-50">
+    <app-title>
+      &nbsp;
+      <i class="fa fa-spinner fa-spin" *ngIf="(model | async)?.isBusy"></i>
+    </app-title>
+  </div>
+
+  <div class="w-50">
     <app-item-filter (valueChanged)="onFilterChanged($event)">
     </app-item-filter>
   </div>
