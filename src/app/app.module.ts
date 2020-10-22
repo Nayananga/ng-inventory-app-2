@@ -1,42 +1,38 @@
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
-import { AgmCoreModule} from '@agm/core';
+﻿import { NgModule, APP_INITIALIZER } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import { AppRoutingModule } from './app.routing';
+// used to create fake backend
+import { fakeBackendProvider } from './_helpers';
+
+import { AppRoutingModule } from './app-routing.module';
+import { JwtInterceptor, ErrorInterceptor, appInitializer } from './_helpers';
+import { AccountService } from './_services';
 import { AppComponent } from './app.component';
-
-import { AppConfigToken, buildAppConfig } from './app.config';
-
-import { ComponentsModule } from './components/components.module';
-import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
-
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { AlertComponent } from './_components';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
-  imports: [
-    BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    ComponentsModule,
-    RouterModule,
-    AppRoutingModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
-    }),
-    MatSnackBarModule
-  ],
-  declarations: [
-    AppComponent,
-    AdminLayoutComponent,
+    imports: [
+        BrowserModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        AppRoutingModule
+    ],
+    declarations: [
+        AppComponent,
+        AlertComponent,
+        HomeComponent
+    ],
+    providers: [
+        { provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [AccountService] },
+        { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
-  ],
-  providers: [
-    { provide: AppConfigToken, useValue: buildAppConfig() },
-  ],
-  bootstrap: [AppComponent]
+        // provider used to create fake backend
+        fakeBackendProvider
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
