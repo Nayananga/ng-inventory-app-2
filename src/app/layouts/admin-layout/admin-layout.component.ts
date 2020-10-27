@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { Location, LocationStrategy, PathLocationStrategy, PopStateEvent } from '@angular/common';
 import 'rxjs/add/operator/filter';
-import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import PerfectScrollbar from 'perfect-scrollbar';
@@ -30,7 +29,6 @@ export class AdminLayoutComponent implements OnInit {
           document.getElementsByTagName('body')[0].classList.remove('perfect-scrollbar-off');
       }
       const elemMainPanel = <HTMLElement>document.querySelector('.main-panel');
-      const elemSidebar = <HTMLElement>document.querySelector('.sidebar .sidebar-wrapper');
 
       this.location.subscribe((ev:PopStateEvent) => {
           this.lastPoppedUrl = ev.url;
@@ -49,11 +47,9 @@ export class AdminLayoutComponent implements OnInit {
       });
       this._router = this.router.events.filter(event => event instanceof NavigationEnd).subscribe((event: NavigationEnd) => {
            elemMainPanel.scrollTop = 0;
-           elemSidebar.scrollTop = 0;
       });
       if (window.matchMedia(`(min-width: 960px)`).matches && !this.isMac()) {
           let ps = new PerfectScrollbar(elemMainPanel);
-          ps = new PerfectScrollbar(elemSidebar);
       }
 
       const window_width = $(window).width();
